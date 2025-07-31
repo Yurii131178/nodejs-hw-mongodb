@@ -1,3 +1,7 @@
-const message = "Hello Jojoba";
+// const message = "Hello Jojoba";
 
-console.log(message);
+// console.log(message);
+
+import { setupServer } from './server.js';
+
+setupServer();
