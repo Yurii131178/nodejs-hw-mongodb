@@ -1,4 +1,3 @@
-import { deleteContactController } from '../controllers/contacts.js';
 import { ContactsCollection } from '../db/models/contact.js';
 
 export const getAllContacts = async () => {
@@ -16,28 +15,49 @@ export const createContact = async (payload) => {
   return contact;
 };
 
-export const updateContract = async (contractId, payload, options = {}) => {
-  const rawResult = await ContactsCollection.findOneAndUpdate(
-    { _id: contractId },
+// export const updateContact = async (contactId, payload, options = {}) => {
+//   const updatedContact = await ContactsCollection.findOneAndUpdate(
+//     { _id: contactId },
+//     payload,
+//     {
+//       new: true,
+//       ...options,
+//     },
+//   );
+
+//   if (!updatedContact) return null;
+
+//   return {
+//     contact: updatedContact,
+//     isNew: false,
+//   };
+// };
+
+///////////////
+export const updateContact = async (contactId, payload, options = {}) => {
+  const updatedContact = await ContactsCollection.findOneAndUpdate(
+    { _id: contactId },
     payload,
     {
-      new: true,
-      includeResultMetadata: true,
+      new: true, // повертає оновлений документ
+      runValidators: true, // перевірка валідності payload
       ...options,
     },
   );
 
-  if (!rawResult || !rawResult.value) return null;
+  // якщо контакт не знайдено — повертаємо null
+  if (!updatedContact) return null;
 
   return {
-    contact: rawResult.value,
-    isNew: Boolean(rawResult?.lastErrorObject?.upserted),
+    contact: updatedContact,
+    isNew: false, // це не новий контакт, а оновлений
   };
 };
+/////////////////
 
 export const deleteContact = async (contactId) => {
-  const contact = await deleteContactController.findOneAndDelete({
+  const contact = await ContactsCollection.findOneAndDelete({
     _id: contactId,
   });
-  return;
+  return contact;
 };
