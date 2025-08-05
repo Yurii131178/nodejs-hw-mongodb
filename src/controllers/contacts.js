@@ -41,3 +41,7 @@ export const createContactsController = async (req, res) => {
     data: newContact,
   });
 };
+
+export const patchContactController = async (req, res) => {
+  // function body
+};
