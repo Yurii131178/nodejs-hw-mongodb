@@ -28,6 +28,6 @@ export const getContactByIdController = async (req, res, next) => {
   });
 };
 
-export const createContactController = async (req, res) => {
+export const createContactsController = async (req, res) => {
   // function body
 };
