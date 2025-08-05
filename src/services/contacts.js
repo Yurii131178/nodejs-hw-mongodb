@@ -1,3 +1,4 @@
+import { deleteContactController } from '../controllers/contacts.js';
 import { ContactsCollection } from '../db/models/contact.js';
 
 export const getAllContacts = async () => {
@@ -32,4 +33,11 @@ export const updateContract = async (contractId, payload, options = {}) => {
     contact: rawResult.value,
     isNew: Boolean(rawResult?.lastErrorObject?.upserted),
   };
+};
+
+export const deleteContact = async (contactId) => {
+  const contact = await deleteContactController.findOneAndDelete({
+    _id: contactId,
+  });
+  return;
 };
