@@ -1,6 +1,6 @@
 import { getAllContacts, getContactById } from '../services/contacts.js';
 
-export const getcontactsController = async (req, res) => {
+export const getСontactsController = async (req, res) => {
   const contacts = await getAllContacts();
 
   res.json({
