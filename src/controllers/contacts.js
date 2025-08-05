@@ -10,19 +10,16 @@ export const getcontactsController = async (req, res) => {
   });
 };
 
-export const getContactByIdController = async (req, res) => {
+//Add next parameter and create an error object if the contact is not found:
+
+export const getContactByIdController = async (req, res, next) => {
   const { contactId } = req.params;
   const contact = await getContactById(contactId);
 
-  // Відповідь, якщо контакт не знайдено
   if (!contact) {
-    res.status(404).json({
-      message: 'Contact not found',
-    });
-    return;
+    next(new Error('Contact not found'));
   }
 
-  // Відповідь, якщо контакт знайдено
   res.json({
     status: 200,
     message: `Successfully found contact with id ${contactId}!`,
