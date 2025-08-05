@@ -27,3 +27,7 @@ export const getContactByIdController = async (req, res, next) => {
     data: contact,
   });
 };
+
+export const createContactController = async (req, res) => {
+  // function body
+};
