@@ -23,7 +23,7 @@ export const updateContact = async (contactId, payload) => {
       new: true,
     },
   );
-  return updateContact;
+  return updatedContact;
 };
 
 export const deleteContact = async (contactId) => {
