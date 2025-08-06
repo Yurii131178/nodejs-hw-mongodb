@@ -15,49 +15,20 @@ export const createContact = async (payload) => {
   return contact;
 };
 
-// export const updateContact = async (contactId, payload, options = {}) => {
-//   const updatedContact = await ContactsCollection.findOneAndUpdate(
-//     { _id: contactId },
-//     payload,
-//     {
-//       new: true,
-//       ...options,
-//     },
-//   );
-
-//   if (!updatedContact) return null;
-
-//   return {
-//     contact: updatedContact,
-//     isNew: false,
-//   };
-// };
-
-///////////////
-export const updateContact = async (contactId, payload, options = {}) => {
+export const updateContact = async (contactId, payload) => {
   const updatedContact = await ContactsCollection.findOneAndUpdate(
     { _id: contactId },
     payload,
     {
-      new: true, // повертає оновлений документ
-      runValidators: true, // перевірка валідності payload
-      ...options,
+      new: true,
     },
   );
-
-  // якщо контакт не знайдено — повертаємо null
-  if (!updatedContact) return null;
-
-  return {
-    contact: updatedContact,
-    isNew: false, // це не новий контакт, а оновлений
-  };
+  return updateContact;
 };
-/////////////////
 
 export const deleteContact = async (contactId) => {
-  const contact = await ContactsCollection.findOneAndDelete({
+  const deletedContact = await ContactsCollection.findOneAndDelete({
     _id: contactId,
   });
-  return contact;
+  return deletedContact;
 };
