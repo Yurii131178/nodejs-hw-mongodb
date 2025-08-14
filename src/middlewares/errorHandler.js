@@ -1,32 +1,33 @@
-// import { HttpError } from 'http-errors';
+// import createHttpError from 'http-errors';
 
 // export const errorHandler = (err, req, res, next) => {
-//   // Перевірка, чи отримали ми помилку від createHttpError
-//   if (err instanceof HttpError) {
-//     res.status(err.status).json({
-//       status: err.status,
-//       message: err.name,
-//       data: err,
-//     });
-//     return;
-//   }
+//   const { status = 500, message = 'Something went wrong', errors = [] } = err;
 
-//   res.status(500).json({
-//     status: 500,
-//     message: 'Something went wrong',
-//     data: err.message,
+//   res.status(status).json({
+//     status,
+//     message,
+//     data: {
+//       errors,
+//     },
 //   });
 // };
 
-import createHttpError from 'http-errors';
+//////
 
-export const errorHandler = (err, req, res, next) => {
-  console.log('Error received in errorHandler:', err);
-  const { status = 500, message = 'Something went wrong', data } = err;
+import { HttpError } from 'http-errors';
 
-  res.status(status).json({
-    status,
-    message,
-    data,
+export const errorHandler = (error, req, res, next) => {
+  if (error instanceof HttpError) {
+    res.status(error.status).json({
+      status: error.status,
+      message: error.status === 422 ? error.errors : 'Something went wrong',
+      data: error.message,
+    });
+    return;
+  }
+  res.status(500).json({
+    status: 500,
+    message: 'Something went wrong',
+    data: error.message,
   });
 };

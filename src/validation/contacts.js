@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { CONTACT_TYPES } from '../constants/index.js';
 
 export const createContactsSchema = Joi.object({
   name: Joi.string().min(3).max(20).required().messages({
@@ -19,7 +20,7 @@ export const createContactsSchema = Joi.object({
     'boolean.base': 'isFavourite must be a boolean',
   }),
   contactType: Joi.string()
-    .valid('work', 'home', 'personal')
+    .valid(...CONTACT_TYPES)
     .default('personal')
     .optional()
     .messages({
@@ -33,5 +34,26 @@ export const updateContactsSchema = Joi.object({
   phoneNumber: Joi.string().optional(),
   email: Joi.string().email().optional(),
   isFavourite: Joi.boolean().optional(),
-  contactType: Joi.string().valid('work', 'home', 'personal').optional(),
+  contactType: Joi.string()
+    .valid(...CONTACT_TYPES)
+    .optional(),
 }).min(1);
+
+const dataToValidate = {
+  name: 'Abracadabra',
+  phoneNumber: '+421 910 99 99 99 10',
+  email: 'abra@mail.com',
+  isFavourite: false,
+  contactType: 'home',
+};
+
+//Важливо вказати { abortEarly: false } при виклику методу validate, щоб отримати всі можливі помилки валідації, а не першу з них:
+const validationResult = createContactsSchema.validate(dataToValidate, {
+  abortEarly: false,
+});
+
+if (validationResult.error) {
+  console.error(validationResult.error.message);
+} else {
+  console.log('Data is valid!');
+}
