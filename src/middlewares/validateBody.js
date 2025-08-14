@@ -1,16 +1,7 @@
 import createHttpError from 'http-errors';
 
 export const validateBody = (schema) => async (req, res, next) => {
-  try {
-    await schema.validateAsync(req.body, {
-      abortEarly: false,
-    });
-    next();
-  } catch (err) {
-    console.log('Error caught in validateBody:', err);
-    const error = createHttpError(400, 'Bad Request', {
-      errors: err.details,
-    });
-    next(error);
-  }
+  // Цей log покаже, чи middleware взагалі запускається
+  console.log('--- validateBody middleware IS RUNNING ---');
+  next(createHttpError(400, 'This is a test message from validateBody.'));
 };
