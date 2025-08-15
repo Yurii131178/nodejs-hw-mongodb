@@ -1,3 +1,5 @@
+import createHttpError from 'http-errors';
+
 export const validateBody = (schema) => (req, res, next) => {
   console.log('Validating body:', req.body); // Додайте це
   const { error } = schema.validate(req.body, { abortEarly: false });
