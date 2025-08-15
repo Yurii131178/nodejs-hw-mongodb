@@ -14,7 +14,6 @@ export const createContactsSchema = Joi.object({
   }),
   email: Joi.string().email().optional().messages({
     'string.email': 'Email must be a valid email address',
-    'string.base': 'Email should be a string',
   }),
   isFavourite: Joi.boolean().optional().messages({
     'boolean.base': 'isFavourite must be a boolean',
@@ -22,7 +21,6 @@ export const createContactsSchema = Joi.object({
   contactType: Joi.string()
     .valid(...CONTACT_TYPES)
     .default('personal')
-    .optional()
     .messages({
       'string.base': 'Contact type should be a string',
       'any.only': 'Contact type must be one of "work", "home", or "personal"',
@@ -40,11 +38,11 @@ export const updateContactsSchema = Joi.object({
 }).min(1);
 
 const dataToValidate = {
-  name: 'Abracadabra',
-  phoneNumber: '+421 910 99 99 99 10',
-  email: 'abra@mail.com',
-  isFavourite: false,
-  contactType: 'home',
+  name: 'John Doe',
+  phoneNumber: '+380 67 34 383 54',
+  email: 'john.doe@example.com',
+  isFavourite: true,
+  contactType: 'personal',
 };
 
 //Важливо вказати { abortEarly: false } при виклику методу validate, щоб отримати всі можливі помилки валідації, а не першу з них:

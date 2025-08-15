@@ -14,7 +14,12 @@ export const setupServer = () => {
 
   app.use(cors()); // або одразу після оголошення app !!!
 
-  app.use(express.json());
+  app.use(
+    express.json({
+      type: ['applucation/json', 'application/vnd.api+json'],
+      limit: '100kb',
+    }),
+  );
 
   app.use(
     pino({
