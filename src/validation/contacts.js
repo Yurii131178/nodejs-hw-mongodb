@@ -28,14 +28,32 @@ export const createContactsSchema = Joi.object({
 });
 
 export const updateContactsSchema = Joi.object({
-  name: Joi.string().min(3).max(20).optional(),
-  phoneNumber: Joi.string().optional(),
-  email: Joi.string().email().optional(),
-  isFavourite: Joi.boolean().optional(),
+  name: Joi.string().min(3).max(20).optional().messages({
+    'string.base': 'Username should be a string',
+    'string.min': 'Username should have at least {#limit} characters',
+    'string.max': 'Username should have at most {#limit} characters',
+  }),
+  phoneNumber: Joi.string().optional().messages({
+    'string.base': 'Phone number should be a string',
+  }),
+  email: Joi.string().email().optional().messages({
+    'string.email': 'Email must be a valid email address',
+  }),
+  isFavourite: Joi.boolean().optional().messages({
+    'boolean.base': 'isFavourite must be a boolean',
+  }),
   contactType: Joi.string()
     .valid(...CONTACT_TYPES)
-    .optional(),
-}).min(1);
+    .optional()
+    .messages({
+      'string.base': 'Contact type should be a string',
+      'any.only': 'Contact type must be one of "work", "home", or "personal"',
+    }),
+})
+  .min(1)
+  .messages({
+    'object.min': 'At least one field must be provided for update',
+  });
 
 const dataToValidate = {
   name: 'John Doe',
