@@ -16,8 +16,7 @@ export const setupServer = () => {
 
   app.use(
     express.json({
-      type: ['applucation/json', 'application/vnd.api+json'],
-      limit: '100kb',
+      type: ['applіcation/json', 'application/vnd.api+json'],
     }),
   );
 
