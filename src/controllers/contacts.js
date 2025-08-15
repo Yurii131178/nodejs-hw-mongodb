@@ -52,7 +52,7 @@ export const getContactByIdController = async (req, res, next) => {
 };
 
 // POST-route
-export const createContactsController = async (req, res) => {
+export const createContactsController = async (req, res, next) => {
   console.log('Received raw request body:', req.body); // Переконайтеся, що це є
   try {
     const newContact = await createContact(req.body);
