@@ -10,6 +10,7 @@ import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import createHttpError from 'http-errors';
 
+//GET-all-contacts-router
 export const getContactsController = async (req, res, next) => {
   try {
     const { page, perPage } = parsePaginationParams(req.query); // pagination
@@ -35,7 +36,7 @@ export const getContactsController = async (req, res, next) => {
     next(err);
   }
 };
-
+// GET-one-cocontact-router
 export const getContactByIdController = async (req, res, next) => {
   const { contactId } = req.params;
   const contact = await getContactById(contactId);
@@ -51,9 +52,8 @@ export const getContactByIdController = async (req, res, next) => {
   });
 };
 
-// POST-route
+// POST-router
 export const createContactsController = async (req, res, next) => {
-  console.log('Received raw request body:', req.body); // Переконайтеся, що це є
   try {
     const newContact = await createContact(req.body);
     res.status(201).json({
@@ -62,12 +62,11 @@ export const createContactsController = async (req, res, next) => {
       data: newContact,
     });
   } catch (error) {
-    console.error('Error in createContact:', error); // Додайте це
-    next(error); // Передайте помилку далі
+    next(error);
   }
 };
 
-// PATCH-route
+// PATCH-router
 export const patchContactController = async (req, res, next) => {
   const { contactId } = req.params;
   const updatedContact = await updateContact(contactId, req.body);
@@ -84,6 +83,7 @@ export const patchContactController = async (req, res, next) => {
   });
 };
 
+// DELETE-router
 export const deleteContactController = async (req, res, next) => {
   const { contactId } = req.params;
 
