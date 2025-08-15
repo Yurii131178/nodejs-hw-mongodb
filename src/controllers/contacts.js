@@ -53,13 +53,18 @@ export const getContactByIdController = async (req, res, next) => {
 
 // POST-route
 export const createContactsController = async (req, res) => {
-  const newContact = await createContact(req.body);
-
-  res.status(201).json({
-    status: 201,
-    message: 'Successfully created contact',
-    data: newContact,
-  });
+  console.log('Received raw request body:', req.body); // Переконайтеся, що це є
+  try {
+    const newContact = await createContact(req.body);
+    res.status(201).json({
+      status: 201,
+      message: 'Successfully created contact',
+      data: newContact,
+    });
+  } catch (error) {
+    console.error('Error in createContact:', error); // Додайте це
+    next(error); // Передайте помилку далі
+  }
 };
 
 // PATCH-route
