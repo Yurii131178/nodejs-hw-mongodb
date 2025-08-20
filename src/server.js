@@ -12,7 +12,7 @@ const PORT = Number(getEnvVar('PORT', '3000'));
 export const setupServer = () => {
   const app = express();
 
-  app.use(cors()); // або одразу після оголошення app !!!
+  // app.use(cors()); // або одразу після оголошення app !!!
 
   app.use(
     express.json({
