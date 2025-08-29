@@ -6,3 +6,6 @@ export const SORT_ORDER = {
 export const CONTACT_TYPES = ['work', 'home', 'personal'];
 
 export const FAVOURITE_FILTER_VALUES = ['true', 'false'];
+
+export const FIFTEEN_MINUTES = 15 * 60 * 1000;
+export const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
