@@ -10,8 +10,10 @@ import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import createHttpError from 'http-errors';
 
-//GET-all-contacts-router
+//GET-all-contacts
+
 export const getContactsController = async (req, res, next) => {
+
   try {
     const { page, perPage } = parsePaginationParams(req.query); // pagination
 
@@ -37,7 +39,7 @@ export const getContactsController = async (req, res, next) => {
     next(err);
   }
 };
-// GET-one-cocontact-router
+// GET one cocontact
 export const getContactByIdController = async (req, res, next) => {
   const { contactId } = req.params;
   const contact = await getContactById(contactId, req.user._id);
@@ -53,11 +55,13 @@ export const getContactByIdController = async (req, res, next) => {
   });
 };
 
-// POST-router
+// POST
 export const createContactsController = async (req, res, next) => {
+
   try {
     const { _id: userId } = req.user;
-    const newContact = await createContact(...req.body, userId);
+    const newContact = await createContact(req.body, userId);
+
     res.status(201).json({
       status: 201,
       message: 'Successfully created contact',
@@ -68,10 +72,14 @@ export const createContactsController = async (req, res, next) => {
   }
 };
 
-// PATCH-router
+// PATCH
 export const patchContactController = async (req, res, next) => {
   const { contactId } = req.params;
-  const updatedContact = await updateContact(contactId, req.user._id, req.body);
+  const updatedContact = await updateContact(
+    contactId,
+    req.body,
+    req.user._id,
+  );
 
   if (!updatedContact) {
     next(createHttpError(404, 'Contact not found'));
@@ -85,7 +93,7 @@ export const patchContactController = async (req, res, next) => {
   });
 };
 
-// DELETE-router
+// DELETE
 export const deleteContactController = async (req, res, next) => {
   const { contactId } = req.params;
 
