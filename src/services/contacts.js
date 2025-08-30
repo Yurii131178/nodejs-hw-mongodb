@@ -13,18 +13,14 @@ export const getAllContacts = async ({
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  // базовий фільтр завжди включає userId
+
   const query = { userId };
 
   if (filter.contactType) {
     query.contactType = filter.contactType;
   }
 
-  // if (filter.isFavourite !== undefined) {
-  //   query.isFavourite = filter.isFavourite; // сomment trouble
-  // }
-
-  if (typeof filter.isFavourite === 'boolean') { // add solution
+    if (typeof filter.isFavourite === 'boolean') {
  query.isFavourite = filter.isFavourite;
  }
 
@@ -51,25 +47,10 @@ export const getContactById = async (contactId, userId) => {
   return contact;
 };
 
-// export const createContact = async (payload, userId) => {
-//   const contact = await ContactsCollection.create({...payload, userId});
-//   return contact;
-// };
-
-/////////////////// !!!!!!!!!!!!!!тест на причину відсутності контакта в базі даних через try..catch !!!!!!!!!!!!!
-
 export const createContact = async (payload, userId) => {
-  try {
-    const contact = await ContactsCollection.create({...payload, userId});
-    return contact;
-  } catch (error) {
-    console.error('Error saving contact:', error);
-    throw error;
-  }
+  const contact = await ContactsCollection.create({...payload, userId});
+  return contact;
 };
-
-/////////////////
-
 
 
 export const updateContact = async (contactId, payload, userId) => {

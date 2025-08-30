@@ -13,14 +13,11 @@ const PORT = Number(getEnvVar('PORT', '3000'));
 export const setupServer = () => {
   const app = express();
 
-  // app.use(cors()); // або одразу після оголошення app !!!
-
   app.use(express.json());
 
-  app.use(cors()); // або одразу після оголошення app !!!
+  app.use(cors());
 
   app.use(cookieParser());
-
 
   app.use(
     pino({
@@ -33,6 +30,7 @@ export const setupServer = () => {
   app.use(router);
 
   app.use(notFoundHandler);
+
   app.use(errorHandler);
 
   app.listen(PORT, () => {
