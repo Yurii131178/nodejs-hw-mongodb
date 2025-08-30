@@ -20,9 +20,14 @@ export const getAllContacts = async ({
     query.contactType = filter.contactType;
   }
 
-  if (filter.isFavourite !== undefined) {
-    query.isFavourite = filter.isFavourite;
-  }
+  // if (filter.isFavourite !== undefined) {
+  //   query.isFavourite = filter.isFavourite; // сomment trouble
+  // }
+
+  if (typeof filter.isFavourite === 'boolean') { // add solution
+ query.isFavourite = filter.isFavourite;
+ }
+
 
   const [contactsCount, contacts] = await Promise.all([
     ContactsCollection.countDocuments(query),
