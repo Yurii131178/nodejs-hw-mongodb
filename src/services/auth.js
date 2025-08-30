@@ -33,7 +33,7 @@ export const loginUser = async (payload) => {
     throw createHttpError(401, 'Unauthorized');
   }
 
-  await SessionsCollection.deleteOne({ userId: user._id });
+  // await SessionsCollection.deleteOne({ userId: user._id }); // поремось з перелогіном після кожного запиту!
 
   const accessToken = randomBytes(30).toString('base64');
   const refreshToken = randomBytes(30).toString('base64');
