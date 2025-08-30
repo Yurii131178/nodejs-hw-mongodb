@@ -55,21 +55,3 @@ export const updateContactsSchema = Joi.object({
     'object.min': 'At least one field must be provided for update',
   });
 
-const dataToValidate = {
-  name: 'John Doe',
-  phoneNumber: '+380 67 34 383 54',
-  email: 'john.doe@example.com',
-  isFavourite: true,
-  contactType: 'personal',
-};
-
-//Важливо вказати { abortEarly: false } при виклику методу validate, щоб отримати всі можливі помилки валідації, а не першу з них:
-const validationResult = createContactsSchema.validate(dataToValidate, {
-  abortEarly: false,
-});
-
-if (validationResult.error) {
-  console.error(validationResult.error.message);
-} else {
-  console.log('Data is valid!');
-}
