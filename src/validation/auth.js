@@ -7,12 +7,19 @@ export const registerUserSchema = Joi.object({
 });
 
 export const loginUserSchema = Joi.object({
-
   email: Joi.string().email().required(),
   password: Joi.string().required(),
 });
 
+// ------request-reset-email-----
 
 export const requestResetEmailSchema = Joi.object({
   email: Joi.string().email().required(),
+});
+
+// ------reset-password-----
+
+export const resetPasswordSchema = Joi.object({
+  password: Joi.string().required(),
+  token: Joi.string().required(),
 });
