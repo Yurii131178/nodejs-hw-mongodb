@@ -4,7 +4,7 @@ import { model, Schema } from 'mongoose';
 
 const contactsSchema = new Schema(
   {
-        name: {
+    name: {
       type: String,
       required: true,
     },
@@ -30,6 +30,7 @@ const contactsSchema = new Schema(
       ref: 'users',
       required: true,
     },
+    photo: { type: String },
   },
   {
     timestamps: true,
