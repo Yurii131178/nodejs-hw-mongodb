@@ -115,7 +115,7 @@ const resetToken = jwt.sign(
     },
     getEnvVar('JWT_SECRET'),
     {
-      expiresIn: '15m',
+      expiresIn: '5m',
     },
   );
 
