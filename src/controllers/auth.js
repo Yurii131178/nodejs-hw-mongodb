@@ -1,5 +1,5 @@
 import { THIRTY_DAYS } from '../constants/index.js';
-import { refreshUsersSession, logoutUser, loginUser, registerUser } from '../services/auth.js';
+import { refreshUsersSession, logoutUser, loginUser, registerUser, requestResetToken } from '../services/auth.js';
 
 //---------register------------
 
