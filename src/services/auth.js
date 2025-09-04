@@ -25,6 +25,7 @@ import fs from 'node:fs/promises';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
+
   if (user) throw createHttpError(409, 'Email in use');
 
   const encryptedPassword = await bcrypt.hash(payload.password, 10);
@@ -37,12 +38,12 @@ export const registerUser = async (payload) => {
 
 // ================login==================
 
-export const loginUser = async (payload) => {
-  const user = await UsersCollection.findOne({ email: payload.email });
+export const loginUser = async ({ email, password }) => {
+  const user = await UsersCollection.findOne({ email: email });
   if (!user) {
     throw createHttpError(401, 'User not found');
   }
-  const isEqual = await bcrypt.compare(payload.password, user.password);
+  const isEqual = await bcrypt.compare(password, user.password);
 
   if (!isEqual) {
     throw createHttpError(401, 'Unauthorized');
@@ -113,9 +114,12 @@ export const logoutUser = async (sessionId) => {
 
 export const requestResetToken = async (email) => {
   const user = await UsersCollection.findOne({ email });
+
   if (!user) {
     throw createHttpError(404, 'User not found');
   }
+
+  const hostName = getEnvVar('APP_DOMAIN');
 
   const resetToken = jwt.sign(
     {
@@ -127,6 +131,8 @@ export const requestResetToken = async (email) => {
       expiresIn: '5m',
     },
   );
+
+  const resetPasswordLink = `${hostName}/reset-password?token=${resetToken}`;
 
   const resetPasswordTemplatePath = path.join(
     TEMPLATES_DIR,
@@ -140,7 +146,7 @@ export const requestResetToken = async (email) => {
   const template = handlebars.compile(templateSource);
   const html = template({
     name: user.name,
-    link: `${getEnvVar('APP_DOMAIN')}/reset-password?token=${resetToken}`,
+    link: resetPasswordLink,
   });
 
   try {
