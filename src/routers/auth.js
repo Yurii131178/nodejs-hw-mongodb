@@ -47,7 +47,7 @@ export default router;
 // ----request-reset-email----
 
 router.post(
-  '/request-reset-email',
+  '/send-reset-email',
   validateBody(requestResetEmailSchema),
   ctrlWrapper(requestResetEmailController),
 );
@@ -55,7 +55,7 @@ router.post(
 // ----reset-pwd----
 
 router.post(
-  '/reset-password',
+  '/reset-pwd',
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordController),
 );
