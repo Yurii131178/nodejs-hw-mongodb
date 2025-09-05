@@ -42,8 +42,6 @@ router.post('/refresh', ctrlWrapper(refreshUserSessionController));
 
 router.post('/logout', ctrlWrapper(logoutUserController));
 
-export default router;
-
 // ----request-reset-email----
 
 router.post(
@@ -59,3 +57,5 @@ router.post(
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordController),
 );
+
+export default router;
