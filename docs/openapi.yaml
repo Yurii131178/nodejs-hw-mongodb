@@ -16,7 +16,14 @@ servers:
   - url: http://localhost:3000
   - url: https://hw7-swagger-ky6p.onrender.com
 paths:
-  # тут будуть посилання на ендпоінти
+  /contacts/{id}:
+    get:
+      $ref: ../swagger/paths/contact/{id}/get.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
 components:
   securitySchemes:
     bearerAuth:
