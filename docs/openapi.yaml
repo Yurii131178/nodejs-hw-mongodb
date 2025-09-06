@@ -7,10 +7,14 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: <опис вашого додатку>
 tags:
-  # теги, що ви будете використовувати
+  - name: Contacts
+    description: Operations about contacts.
+    name: Auth
+    description: Auth operations.
+
 servers:
   - url: http://localhost:3000
-  - url: #посилання на задеплоєний сайт
+  - url: https://hw7-swagger-ky6p.onrender.com
 paths:
   # тут будуть посилання на ендпоінти
 components:
