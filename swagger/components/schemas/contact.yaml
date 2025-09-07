@@ -29,7 +29,7 @@ properties:
     type: string
     example: 'john.doe@example.com'
   isFavourite:
-    description: 'Conctact belongs favourites '
+    description: 'Conctact belongs to favourites'
     type: boolean
     example: false
   contactType:

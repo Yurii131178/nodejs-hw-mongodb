@@ -12,15 +12,18 @@ tags:
   - name: Auth
     description: Auth operations.
 servers:
-  # - url: http://localhost:3000
+  - url: http://localhost:3000
   - url: https://hw7-swagger-ky6p.onrender.com
 paths:
   /contacts:
     get:
       $ref: ../swagger/paths/contacts/get.yaml
+
   /contacts/{id}:
     get:
       $ref: ../swagger/paths/contacts/{id}/get.yaml
+    patch:
+      $ref: ../swagger/paths/contacts/{id}/patch.yaml
 
 components:
   securitySchemes:
