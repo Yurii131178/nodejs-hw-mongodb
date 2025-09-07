@@ -9,20 +9,19 @@ info:
 tags:
   - name: Contacts
     description: Operations about users.
-    name: Auth
+  - name: Auth
     description: Auth operations.
 servers:
-  - url: http://localhost:3000
+  # - url: http://localhost:3000
   - url: https://hw7-swagger-ky6p.onrender.com
 paths:
+  /contacts:
+    get:
+      $ref: ../swagger/paths/contacts/get.yaml
   /contacts/{id}:
     get:
       $ref: ../swagger/paths/contacts/{id}/get.yaml
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
+
 components:
   securitySchemes:
     bearerAuth:
