@@ -11,6 +11,8 @@ import { UPLOAD_DIR } from './constants/index.js';
 
 import cookieParser from 'cookie-parser';
 
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
+
 const PORT = Number(getEnvVar('PORT', '3000'));
 
 export const setupServer = () => {
@@ -31,6 +33,8 @@ export const setupServer = () => {
   );
 
   app.use('/uploads', express.static(UPLOAD_DIR));
+
+  app.use('/api-docs', swaggerDocs());
 
   app.use(router);
 
