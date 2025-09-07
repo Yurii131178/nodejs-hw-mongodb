@@ -13,7 +13,7 @@ tags:
     description: Auth operations.
 servers:
   - url: http://localhost:3000
-  # - url: https://hw7-swagger-ky6p.onrender.com
+  - url: https://hw7-swagger-ky6p.onrender.com
 paths:
   /contacts:
     get:

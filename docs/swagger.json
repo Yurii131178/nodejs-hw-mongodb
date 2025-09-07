@@ -28,7 +28,7 @@
     "/contacts": {
       "get": {
         "tags": [
-          "Contactss"
+          "Contacts"
         ],
         "summary": "Get list of contacts",
         "operationId": "getContacts",
