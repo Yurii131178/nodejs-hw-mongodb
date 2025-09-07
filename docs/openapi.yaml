@@ -5,13 +5,12 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  description: <опис вашого додатку>
+  description: Documentation of Contacts App
 tags:
   - name: Contacts
-    description: Operations about contacts.
+    description: Operations about users.
     name: Auth
     description: Auth operations.
-
 servers:
   - url: http://localhost:3000
   - url: https://hw7-swagger-ky6p.onrender.com
