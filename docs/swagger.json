@@ -2,19 +2,21 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "Contacts app",
+    "title": "Contacts API",
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "description": "Documentation of Contacts App"
+    "description": "API for managing your contacts"
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "http://localhost:3000",
+      "description": "Development"
     },
     {
-      "url": "https://hw7-swagger-ky6p.onrender.com"
+      "url": "https://hw7-swagger-ky6p.onrender.com",
+      "description": "Production"
     }
   ],
   "tags": [
@@ -156,6 +158,76 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/200authsre"
+          },
+          "404": {
+            "$ref": "#/components/responses/404auth"
+          }
+        }
+      }
+    },
+    "/auth/reset-pwd": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Reset password",
+        "operationId": "resetPassword",
+        "description": "Resets user password using a JWT token from the email.\nAll user sessions will be invalidated after reset.\n",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "example": "<jwt-token>"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "new pxxxxxxxxword"
+                  }
+                },
+                "required": [
+                  "token",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password has been successfully reset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Password has been successfully reset."
+                    },
+                    "data": {
+                      "type": "object",
+                      "example": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400auth"
+          },
+          "401": {
+            "$ref": "#/components/responses/401authreset"
           },
           "404": {
             "$ref": "#/components/responses/404auth"
@@ -947,6 +1019,64 @@
                 "data": {
                   "type": "string",
                   "example": "User not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400auth": {
+        "description": "Validation error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "BadRequestError"
+                },
+                "data": {
+                  "type": "string",
+                  "example": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401authreset": {
+        "description": "User authentication failed.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 401
+                },
+                "message": {
+                  "type": "string",
+                  "example": "UnauthorizedError"
+                },
+                "data": {
+                  "type": "string",
+                  "example": "Token is expired or invalid."
                 }
               }
             }
