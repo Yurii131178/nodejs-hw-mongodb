@@ -28,7 +28,7 @@ content:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/contact.yaml
+                $ref: ../../schemas/contact.yaml
             page:
               type: number
               example: 2

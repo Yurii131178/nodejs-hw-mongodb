@@ -131,7 +131,7 @@
         ],
         "summary": "Send user's password reset email",
         "operationId": "send-reset-email",
-        "description": "This endpoint sends a password reset email to the user.",
+        "description": "sends a password reset email to the user.",
         "security": [],
         "requestBody": {
           "required": true,
@@ -925,7 +925,7 @@
         }
       },
       "404auth": {
-        "description": "Sending the reset request email",
+        "description": "Not Found error",
         "content": {
           "application/json": {
             "schema": {

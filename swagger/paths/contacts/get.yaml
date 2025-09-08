@@ -41,6 +41,6 @@ parameters:
       example: false
 responses:
   '200':
-    $ref: ../../components/responces/200.yaml
+    $ref: ../../components/responces/contacts/200.yaml
   '401':
-    $ref: ../../components/responces/401.yaml
+    $ref: ../../components/responces/contacts/401.yaml

@@ -66,11 +66,11 @@ responses:
               $ref: '../../../components/schemas/contact.yaml'
   '400':
     description: Invalid request payload
-    $ref: ../../../components/responces/400.yaml
+    $ref: ../../../components/responces/contacts/400.yaml
 
   '401':
     description: 'Unauthorized!'
-    $ref: ../../../components/responces/401.yaml
+    $ref: ../../../components/responces/contacts/401.yaml
   '404':
     description: 'Contact not found!'
-    $ref: ../../../components/responces/404.yaml
+    $ref: ../../../components/responces/contacts/404.yaml
