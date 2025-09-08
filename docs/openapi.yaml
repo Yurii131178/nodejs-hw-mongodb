@@ -15,6 +15,9 @@ servers:
   - url: http://localhost:3000
   - url: https://hw7-swagger-ky6p.onrender.com
 paths:
+  /auth/login:
+    post:
+      $ref: '../swagger/paths/auth/login.yaml'
   /contacts:
     get:
       $ref: ../swagger/paths/contacts/get.yaml
