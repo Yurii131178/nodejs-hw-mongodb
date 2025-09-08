@@ -196,7 +196,6 @@
                   "name",
                   "phoneNumber",
                   "email",
-                  "isFavourite",
                   "contactType"
                 ],
                 "properties": {
@@ -221,14 +220,14 @@
                     "example": false
                   },
                   "contactType": {
-                    "description": "Conctact type",
+                    "description": "Group contacts by type",
                     "type": "string",
-                    "example": "personal",
                     "enum": [
                       "work",
                       "home",
                       "personal"
-                    ]
+                    ],
+                    "example": "personal"
                   },
                   "photo": {
                     "description": "contact's photo",
@@ -275,6 +274,9 @@
           },
           "404": {
             "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
           }
         }
       }
