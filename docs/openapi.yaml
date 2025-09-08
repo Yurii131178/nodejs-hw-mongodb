@@ -17,13 +17,13 @@ servers:
 paths:
   /auth/login:
     post:
-      $ref: '../swagger/paths/auth/login.yaml'
+      $ref: ../swagger/paths/auth/login.yaml
   /auth/register:
     post:
-      $ref: '../swagger/paths/auth/register.yaml
+      $ref: ../swagger/paths/auth/register.yaml
   /auth/send-reset-email:
     post:
-      $ref: '../swagger/paths/auth/send-reset-email.yaml
+      $ref: ../swagger/paths/auth/send-reset-email.yaml
 
   /contacts:
     get:

@@ -30,6 +30,6 @@ requestBody:
 
 responses:
   '201':
-    $ref: ../../../components/responses/auth/201auth.yaml
+    $ref: ../../components/responces/auth/201.yaml
   '409':
-    $ref: ../../../components/responses/auth/409auth.yaml
+    $ref: ../../components/responces/auth/409auth.yaml
