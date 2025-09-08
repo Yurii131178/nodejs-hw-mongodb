@@ -19,6 +19,6 @@ requestBody:
             example: 'john.doe@mail.com'
 responses:
   '200':
-    $ref: ../../components/responces/auth/200auth-send reset-email.yaml
+    $ref: ../../components/responces/auth/200authsre.yaml
   '404':
     $ref: ../../components/responces/auth/404auth.yaml
