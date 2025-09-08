@@ -155,7 +155,7 @@
         },
         "responses": {
           "200": {
-            "$ref": "#/components/responses/200auth-send reset-email"
+            "$ref": "#/components/responses/200authsre"
           },
           "404": {
             "$ref": "#/components/responses/404auth"
@@ -895,7 +895,7 @@
           }
         }
       },
-      "200auth-send reset-email": {
+      "200authsre": {
         "description": "Confirms the successful email sending to reset password!",
         "content": {
           "application/json": {
