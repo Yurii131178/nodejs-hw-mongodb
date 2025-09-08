@@ -6,6 +6,7 @@ description: 'Create a contact with payload'
 security:
   - bearerAuth: []
 requestBody:
+  required: true
   content:
     multipart/form-data:
       schema:
@@ -13,7 +14,6 @@ requestBody:
         required:
           - name
           - phoneNumber
-          - contactType
         properties:
           name:
             description: "Conctact's name"
@@ -28,7 +28,7 @@ requestBody:
             type: string
             example: 'john.doe@example.com'
           isFavourite:
-            description: 'Conctact belongs to favourites'
+            description: 'Does Conctact belong to favourites or not?'
             type: boolean
             example: false
           contactType:
@@ -63,7 +63,5 @@ responses:
               $ref: '../../components/schemas/contact.yaml'
   '401':
     $ref: ../../components/responces/401.yaml
-  '404':
-    $ref: ../../components/responces/404.yaml
   '500':
     $ref: ../../components/responces/500.yaml
