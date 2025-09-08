@@ -21,6 +21,7 @@ parameters:
     schema:
       type: string
       example: 'name'
+      description: all fields can be defined
   - in: query
     name: sortOrder
     schema:
@@ -31,8 +32,8 @@ parameters:
     name: contactType
     schema:
       type: string
-      example: 'home'
       enum: ['work', 'home', 'personal']
+      example: 'home'
   - in: query
     name: isFavourite
     schema:
@@ -40,54 +41,6 @@ parameters:
       example: false
 responses:
   '200':
-    description: Successfully found contacts!
-    content:
-      application/json:
-        schema:
-          type: object
-          required:
-            - status
-            - message
-            - data
-          properties:
-            status:
-              type: integer
-              example: 200
-            message:
-              type: string
-              example: Successfully found contacts!
-            data:
-              type: object
-              required:
-                - data
-                - page
-                - perPage
-                - totalItems
-                - totalPages
-                - hasNextPage
-                - hasPreviousPage
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '../../components/schemas/contact.yaml'
-                page:
-                  type: number
-                  example: 1
-                perPage:
-                  type: number
-                  example: 10
-                totalItems:
-                  type: number
-                  example: 15
-                totalPages:
-                  type: number
-                  example: 2
-                hasNextPage:
-                  type: boolean
-                  example: false
-                hasPreviousPage:
-                  type: boolean
-                  example: true
+    $ref: ../../components/responces/200.yaml
   '401':
     $ref: ../../components/responces/401.yaml

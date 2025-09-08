@@ -8,7 +8,7 @@ info:
   description: Documentation of Contacts App
 tags:
   - name: Contacts
-    description: Operations about users.
+    description: Operations about contacts.
   - name: Auth
     description: Auth operations.
 servers:
