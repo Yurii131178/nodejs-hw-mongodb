@@ -12,6 +12,9 @@
   "servers": [
     {
       "url": "http://localhost:3000"
+    },
+    {
+      "url": "https://hw7-swagger-ky6p.onrender.com"
     }
   ],
   "tags": [

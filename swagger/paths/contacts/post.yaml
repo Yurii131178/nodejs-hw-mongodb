@@ -14,7 +14,6 @@ requestBody:
           - name
           - phoneNumber
           - email
-          - isFavourite
           - contactType
         properties:
           name:
@@ -34,10 +33,10 @@ requestBody:
             type: boolean
             example: false
           contactType:
-            description: 'Conctact type'
+            description: 'Group contacts by type'
             type: string
-            example: 'personal'
             enum: ['work', 'home', 'personal']
+            example: 'personal'
           photo:
             description: "contact's photo"
             type: string
@@ -67,3 +66,5 @@ responses:
     $ref: ../../components/responces/401.yaml
   '404':
     $ref: ../../components/responces/404.yaml
+  '500':
+    $ref: ../../components/responces/500.yaml
