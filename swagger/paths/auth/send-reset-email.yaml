@@ -1,0 +1,50 @@
+tags:
+  - Auth
+summary: Send password reset email
+operationId: send reset email
+description: sends an email with a password reset link and generates a JWT
+security: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: 'john.doe@email.com'
+      required:
+        - email
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        message:
+          type: string
+          example: 'Login successful'
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+            accessToken:
+              type: string
+              example: '<access-token>'
+            refreshToken:
+              type: string
+              example: '<refresh-token>'
+
+responses:
+  '200':
+    $ref: '../../components/responces/auth/200auth.yaml'
+
+  '400':
+    $ref: '../../components/responces/auth/400auth.yaml
+  '404':
+    $ref: '../../components/responces/auth/404auth.yaml
+  '500':
+    $ref: '../../components/responces/auth/500auth.yaml

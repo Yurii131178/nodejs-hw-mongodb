@@ -21,8 +21,9 @@ paths:
   /auth/register:
     post:
       $ref: '../swagger/paths/auth/register.yaml
-
-
+  /auth/send-reset-email:
+    post:
+      $ref: '../swagger/paths/auth/send-reset-email.yaml
 
   /contacts:
     get:
